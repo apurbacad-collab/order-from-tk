@@ -1,1 +1,199 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography Booking</title>
 
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f5f5f5;
+  padding:15px;
+}
+.container{
+  max-width:420px;
+  margin:auto;
+}
+.header{
+  background:#ff7a00;
+  color:white;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:bold;
+}
+.card{
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.qty{
+  display:flex;
+  gap:5px;
+}
+.qty button{
+  width:35px;
+  height:35px;
+  border:none;
+  background:#ddd;
+  font-size:18px;
+  border-radius:6px;
+}
+.qty input{
+  width:40px;
+  text-align:center;
+}
+.summary{
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+}
+.total{
+  font-size:22px;
+  font-weight:bold;
+}
+.order{
+  width:100%;
+  padding:15px;
+  margin-top:15px;
+  background:#0a7;
+  color:white;
+  border:none;
+  border-radius:12px;
+  font-size:18px;
+}
+input, textarea{
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border:1px solid #ccc;
+  border-radius:8px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="header">📸 Photography Booking</div>
+
+<!-- Client Info -->
+<div class="card">
+<h3>Client Info</h3>
+<input type="text" id="name" placeholder="আপনার নাম">
+<input type="tel" id="phone" placeholder="মোবাইল নাম্বার">
+<textarea id="address" placeholder="সম্পূর্ণ ঠিকানা"></textarea>
+</div>
+
+<!-- Photographer -->
+<div class="card">
+<div class="row">
+<div>
+<h3>Photographer</h3>
+<p>প্রতি জন: ৳ 7000</p>
+</div>
+<div class="qty">
+<button onclick="changeQty('photo',-1)">-</button>
+<input id="photoQty" value="1" readonly>
+<button onclick="changeQty('photo',1)">+</button>
+</div>
+</div>
+</div>
+
+<!-- Cinematographer -->
+<div class="card">
+<div class="row">
+<div>
+<h3>Cinematographer</h3>
+<p>প্রতি জন: ৳ 7000</p>
+</div>
+<div class="qty">
+<button onclick="changeQty('cine',-1)">-</button>
+<input id="cineQty" value="0" readonly>
+<button onclick="changeQty('cine',1)">+</button>
+</div>
+</div>
+</div>
+
+<!-- Discount -->
+<div class="card">
+<h3>Basic Discount (%)</h3>
+<input type="number" id="discount" value="0" onchange="calculateTotal()">
+</div>
+
+<!-- Summary -->
+<div class="summary">
+<p>Subtotal: ৳ <span id="subtotal">0</span></p>
+<p>Discount: ৳ <span id="discountAmount">0</span></p>
+<p class="total">Total: ৳ <span id="total">0</span></p>
+</div>
+
+<button class="order" onclick="sendWhatsApp()">Order Now</button>
+
+</div>
+
+<script>
+let photoPrice = 7000;
+let cinePrice = 7000;
+
+function changeQty(type, value){
+  let input = document.getElementById(type+"Qty");
+  let qty = parseInt(input.value) + value;
+  if(qty < 0) qty = 0;
+  input.value = qty;
+  calculateTotal();
+}
+
+function calculateTotal(){
+  let photoQty = parseInt(document.getElementById("photoQty").value);
+  let cineQty = parseInt(document.getElementById("cineQty").value);
+  let discountPercent = parseFloat(document.getElementById("discount").value);
+
+  let subtotal = (photoQty * photoPrice) + (cineQty * cinePrice);
+  let discountAmount = subtotal * (discountPercent / 100);
+  let total = subtotal - discountAmount;
+
+  document.getElementById("subtotal").innerText = subtotal;
+  document.getElementById("discountAmount").innerText = discountAmount.toFixed(0);
+  document.getElementById("total").innerText = total.toFixed(0);
+}
+
+function sendWhatsApp(){
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let address = document.getElementById("address").value;
+  let photoQty = document.getElementById("photoQty").value;
+  let cineQty = document.getElementById("cineQty").value;
+  let total = document.getElementById("total").innerText;
+
+  let message =
+`📸 Photography Booking
+Name: ${name}
+Phone: ${phone}
+Address: ${address}
+
+Photographer: ${photoQty}
+Cinematographer: ${cineQty}
+
+Total: ৳ ${total}`;
+
+  let whatsappNumber = "8801XXXXXXXXX"; // ← এখানে তোমার নাম্বার
+  let url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+}
+
+calculateTotal();
+</script>
+
+</body>
+</html>
