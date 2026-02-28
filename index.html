@@ -1,199 +1,1204 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Photography Booking</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 
-<style>
-body{
-  font-family: Arial, sans-serif;
-  background:#f5f5f5;
-  padding:15px;
-}
-.container{
-  max-width:420px;
-  margin:auto;
-}
-.header{
-  background:#ff7a00;
-  color:white;
-  padding:15px;
-  border-radius:12px;
-  text-align:center;
-  font-weight:bold;
-}
-.card{
-  background:white;
-  padding:15px;
-  border-radius:12px;
-  margin-top:15px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
-}
-.row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.qty{
-  display:flex;
-  gap:5px;
-}
-.qty button{
-  width:35px;
-  height:35px;
-  border:none;
-  background:#ddd;
-  font-size:18px;
-  border-radius:6px;
-}
-.qty input{
-  width:40px;
-  text-align:center;
-}
-.summary{
-  background:white;
-  padding:15px;
-  border-radius:12px;
-  margin-top:15px;
-}
-.total{
-  font-size:22px;
-  font-weight:bold;
-}
-.order{
-  width:100%;
-  padding:15px;
-  margin-top:15px;
-  background:#0a7;
-  color:white;
-  border:none;
-  border-radius:12px;
-  font-size:18px;
-}
-input, textarea{
-  width:100%;
-  padding:10px;
-  margin-top:8px;
-  border:1px solid #ccc;
-  border-radius:8px;
-}
-</style>
+  <title>আইকনিক ইভেন্ট | Event Management & Planner</title>
+  <meta name="description" content="আইকনিক ইভেন্ট - Hindu/Muslim/Christian Wedding, Reception, Holud ও সকল ইভেন্টের জন্য স্টেজ, কুঞ্জ, এন্ট্রি গেট, ফটো জোন, VIP টেবিল, সাউন্ড-লাইট সহ পূর্ণ ইভেন্ট ম্যানেজমেন্ট। Instant quotation ও WhatsApp booking." />
 
+  <!-- Website Icon / Favicon -->
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/hPTPvL06/file-000000006d847209b4e18ad8d8ef4a25-(1).png">
+
+  <!-- Bengali Font (recommended) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0f18;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(0,0,0,.22);
+      --stroke:rgba(255,255,255,.12);
+      --muted:rgba(255,255,255,.65);
+      --text:rgba(255,255,255,.92);
+      --brand1:#7aa7ff;
+      --brand2:#7bffd1;
+      --ok:#2bd576;
+      --warn:#ffcc66;
+      --danger:#ff6b6b;
+      --shadow:0 14px 50px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:14px;
+      --max:980px;
+      --pad:16px;
+      --pad2:12px;
+      --font:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans Bengali","Noto Sans",sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 700px at 10% -10%, rgba(122,167,255,.22), transparent 60%),
+                               radial-gradient(900px 600px at 100% 0%, rgba(123,255,209,.12), transparent 60%),
+                               linear-gradient(180deg,#070a12 0%, #0b0f18 45%, #070a12 100%);
+              color:var(--text);font-family:var(--font);}
+    a{color:inherit}
+    .container{max-width:var(--max);margin:0 auto;padding:0 var(--pad);}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(12px);
+      background:rgba(7,10,18,.55);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .topbar-inner{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px var(--pad);
+      max-width:var(--max);margin:0 auto;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;min-width:0;
+    }
+    .brand img{
+      width:38px;height:38px;border-radius:10px;
+      border:1px solid rgba(255,255,255,.14);
+      background:#000;object-fit:cover;flex:0 0 auto;
+      box-shadow:0 10px 30px rgba(122,167,255,.18);
+    }
+    .brand h1{
+      font-size:18px;margin:0;letter-spacing:.2px;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .brand h1 span{opacity:.75;font-weight:700}
+    .nav-mini{
+      display:flex;gap:8px;align-items:center;
+    }
+    .chip{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      padding:9px 12px;border-radius:999px;
+      text-decoration:none;font-size:13px;
+      display:inline-flex;align-items:center;justify-content:center;
+    }
+
+    /* HERO */
+    .hero{
+      margin:14px 0 18px;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      position:relative;
+      min-height:420px;
+      background:#000;
+    }
+    @media (max-width:480px){ .hero{min-height:420px} }
+    .hero img{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity 1.2s ease;
+      filter:saturate(1.02) contrast(1.04);
+      transform:scale(1.02);
+    }
+    .hero img.active{opacity:1}
+    .hero::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(90deg, rgba(0,0,0,.70) 0%, rgba(0,0,0,.40) 45%, rgba(0,0,0,.25) 100%),
+                 linear-gradient(0deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.18) 50%, rgba(0,0,0,.25) 100%);
+      pointer-events:none;
+    }
+    .hero-content{
+      position:relative;z-index:2;
+      padding:26px;
+      display:flex;flex-direction:column;
+      justify-content:flex-end;
+      min-height:420px;
+      gap:10px;
+    }
+    .hero-title{margin:0;font-size:30px;line-height:1.1}
+    .hero-sub{margin:0;color:rgba(255,255,255,.82);font-size:15px;max-width:560px;line-height:1.6}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .btn{
+      border:none;cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:12px 14px;border-radius:16px;
+      background:linear-gradient(135deg,var(--brand1),rgba(122,167,255,.65));
+      color:#08101f;font-weight:900;
+      text-decoration:none;
+      box-shadow:0 12px 30px rgba(122,167,255,.18);
+      font-size:14px;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btnGhost{
+      background:rgba(255,255,255,.07);
+      color:rgba(255,255,255,.92);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:none;
+      font-weight:800;
+    }
+
+    /* SECTIONS */
+    section{margin:18px 0}
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    .section-title{
+      display:flex;align-items:center;gap:10px;
+      margin:0 0 10px;
+      font-size:18px;
+    }
+    .muted{color:var(--muted);font-size:14px;line-height:1.6;margin:0}
+    .grid{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:14px;
+    }
+    @media (max-width:860px){ .grid{grid-template-columns:1fr} }
+
+    /* Gallery grid */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width:860px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:420px){ .gallery{grid-template-columns:1fr} }
+    .gallery img{
+      width:100%;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:#000;
+      object-fit:cover;
+      aspect-ratio: 4/3;
+    }
+
+    /* Packages / Services */
+    .packages{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+    }
+    @media (max-width:860px){ .packages{grid-template-columns:1fr} }
+    .pkg{
+      padding:14px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .pkg h3{margin:0 0 8px;font-size:16px}
+    .pkg p{margin:6px 0;color:rgba(255,255,255,.74);font-size:13.5px;line-height:1.55}
+    .price{margin-top:10px;font-size:18px;font-weight:900}
+    .pkg .tag{
+      display:inline-flex;gap:6px;align-items:center;
+      font-size:12px;color:rgba(255,255,255,.86);
+      padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.22);
+      margin-bottom:10px;
+    }
+
+    /* Reviews */
+    .reviewGroup{margin-top:10px}
+    .reviewHeader{
+      display:flex;align-items:center;gap:10px;
+      margin:0 0 10px;
+      font-size:16px;font-weight:900;
+    }
+    .star{width:26px;height:26px;border-radius:10px;background:rgba(255,204,102,.12);
+      display:grid;place-items:center;border:1px solid rgba(255,204,102,.2)}
+    .reviewCard{
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:12px;
+      display:flex;gap:12px;
+      margin-bottom:10px;
+    }
+    .avatar{
+      width:46px;height:46px;border-radius:16px;object-fit:cover;
+      border:1px solid rgba(255,255,255,.16);
+      flex:0 0 auto;
+    }
+    .rvTop{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+    .rvName{margin:0;font-weight:900;font-size:14.5px}
+    .rvMeta{margin:3px 0 0;color:rgba(255,255,255,.6);font-size:12.5px}
+    .rvText{margin:8px 0 0;color:rgba(255,255,255,.78);font-size:13.5px;line-height:1.5}
+    .stars{color:#ffcc66;font-size:12.5px;white-space:nowrap;margin-top:2px;opacity:.95}
+    .seeBtn{
+      width:100%;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.9);
+      padding:11px 12px;border-radius:16px;
+      font-weight:900;cursor:pointer;
+    }
+
+    /* Team */
+    .team{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+    }
+    @media (max-width:560px){ .team{grid-template-columns:1fr} }
+    .member{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:12px;
+      display:flex;gap:12px;align-items:center;
+    }
+    .member img{
+      width:64px;height:64px;border-radius:18px;
+      object-fit:cover;border:1px solid rgba(255,255,255,.14);
+      flex:0 0 auto;
+    }
+    .member h4{margin:0;font-size:14.5px}
+    .member p{margin:4px 0 0;color:rgba(255,255,255,.68);font-size:12.5px;line-height:1.4}
+    .member a{color:rgba(255,255,255,.92);text-decoration:none}
+    .member a:hover{text-decoration:underline}
+
+    /* Booking */
+    .field{margin-bottom:12px}
+    label{display:block;font-weight:900;font-size:13.5px;margin-bottom:8px;color:rgba(255,255,255,.88)}
+    input,select,textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.25);
+      color:rgba(255,255,255,.92);
+      outline:none;
+      font-size:15px;
+    }
+    textarea{min-height:92px;resize:vertical}
+    input::placeholder, textarea::placeholder{color:rgba(255,255,255,.42)}
+    .mini{font-size:12.5px;color:rgba(255,255,255,.58);line-height:1.55;margin-top:8px}
+    .pillRow{display:flex;gap:10px;flex-wrap:wrap}
+    .pillRadio{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 12px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04)
+    }
+    .pillRadio input{accent-color:var(--brand1)}
+    .cardBox{
+      margin-top:10px;padding:12px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03)
+    }
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:420px){ .grid2{grid-template-columns:1fr} }
+    .rowCard{
+      padding:12px;border-radius:16px;margin-bottom:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.22)
+    }
+    .rowTop{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .rowTop strong{font-size:14px;opacity:.95}
+    .iconBtn{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:#fff;padding:8px 10px;border-radius:12px;cursor:pointer
+    }
+
+    /* Cost panel */
+    .cost{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.22);
+      border-radius:18px;padding:14px;
+    }
+    .costRow{
+      display:flex;justify-content:space-between;gap:12px;
+      padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.12);
+      font-size:14px;color:rgba(255,255,255,.8);
+    }
+    .costRow:last-child{border-bottom:none}
+    .costRow b{color:rgba(255,255,255,.92)}
+    .totalRow{font-size:15.5px}
+    .totalRow b{font-size:18px}
+    .hintBox{
+      margin-top:10px;padding:12px 12px;border-radius:16px;
+      border:1px solid rgba(123,255,209,.16);
+      background:rgba(123,255,209,.06);
+      color:rgba(255,255,255,.86);
+      font-size:13.5px;line-height:1.55;
+    }
+    .warnBox{
+      margin-top:10px;padding:12px;border-radius:16px;
+      border:1px solid rgba(255,107,107,.18);
+      background:rgba(255,107,107,.08);
+      color:rgba(255,255,255,.86);
+      font-size:13.5px;line-height:1.55;
+    }
+
+    /* Footer */
+    .footer{
+      margin:20px 0 90px;
+      padding:16px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .socialRow{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px}
+    .socialRow a{flex:1 1 auto;text-align:center}
+    .footBottom{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding-top:12px;border-top:1px solid rgba(255,255,255,.10)
+    }
+    .footLogo{
+      display:flex;align-items:center;gap:10px;min-width:0
+    }
+    .footLogo img{
+      width:44px;height:44px;border-radius:12px;object-fit:cover;
+      border:1px solid rgba(255,255,255,.14);
+      background:#000;
+    }
+    .footLogo .txt{min-width:0}
+    .footLogo .txt b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .footLogo .txt small{display:block;color:rgba(255,255,255,.55)}
+    .copy{color:rgba(255,255,255,.55);font-size:12.5px;text-align:right}
+
+    /* Floating WhatsApp */
+    .whatsappFloat{
+      position:fixed;right:16px;bottom:92px;z-index:60;
+      width:54px;height:54px;border-radius:20px;
+      display:grid;place-items:center;
+      background:#25d366;color:#fff;
+      text-decoration:none;font-size:22px;
+      box-shadow:0 16px 40px rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    /* Bottom CTA */
+    .bottomCTA{
+      position:fixed;left:0;right:0;bottom:0;z-index:70;
+      padding:10px var(--pad);
+      background:rgba(7,10,18,.55);
+      backdrop-filter: blur(12px);
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .bottomCTA .wrap{
+      max-width:var(--max);margin:0 auto;
+      display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    }
+    .bottomCTA a{
+      text-decoration:none;
+      padding:12px 12px;border-radius:18px;
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      font-weight:900;color:rgba(255,255,255,.92);
+    }
+    .bottomCTA a.primary{
+      background:linear-gradient(135deg,var(--brand1),rgba(122,167,255,.55));
+      color:#08101f;border:none;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="container">
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="https://i.postimg.cc/hPTPvL06/file-000000006d847209b4e18ad8d8ef4a25-(1).png" alt="আইকনিক ইভেন্ট লোগো">
+        <h1>আইকনিক <span>ইভেন্ট</span></h1>
+      </div>
+      <div class="nav-mini">
+        <a class="chip" href="#portfolio">🖼️ কাজ</a>
+        <a class="chip" href="#team">👥 টিম</a>
+        <a class="chip" href="#booking">📅 কোটেশন</a>
+      </div>
+    </div>
+  </div>
 
-<div class="header">📸 Photography Booking</div>
+  <div class="container">
+    <!-- HERO SLIDER -->
+    <div class="hero" id="top">
+      <img src="https://i.postimg.cc/kGk4ZwvQ/14-(1).jpg" class="active" alt="Iconic Event hero 1">
+      <img src="https://i.postimg.cc/Vv36T4Wj/1771851621555.jpg" alt="Iconic Event hero 2">
+      <img src="https://i.postimg.cc/x8WC7g3b/1771860053822.jpg" alt="Iconic Event hero 3">
+      <img src="https://i.postimg.cc/3NPR69Fx/1771860089655.jpg" alt="Iconic Event hero 4">
 
-<!-- Client Info -->
-<div class="card">
-<h3>Client Info</h3>
-<input type="text" id="name" placeholder="আপনার নাম">
-<input type="tel" id="phone" placeholder="মোবাইল নাম্বার">
-<textarea id="address" placeholder="সম্পূর্ণ ঠিকানা"></textarea>
-</div>
+      <div class="hero-content">
+        <h2 class="hero-title">আপনার অনুষ্ঠান হোক<br/>ঝামেলামুক্ত ও আকর্ষণীয়</h2>
+        <p class="hero-sub">
+          হিন্দু/মুসলিম/খ্রিস্টান বিয়ে, রিসিপশন, গায়ে হলুদ ও সকল ইভেন্টে—স্টেজ, কুঞ্জ, ফটো জোন, এন্ট্রি গেট, VIP টেবিল, সাউন্ড & লাইটসহ পূর্ণ ইভেন্ট ম্যানেজমেন্ট।
+          নিচের ফর্ম পূরণ করলে ইনস্ট্যান্ট কোটেশন পাবেন।
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#booking">📅 কোটেশন নিন</a>
+          <a class="btn btnGhost" href="#services">💼 প্যাকেজ</a>
+        </div>
+      </div>
+    </div>
 
-<!-- Photographer -->
-<div class="card">
-<div class="row">
-<div>
-<h3>Photographer</h3>
-<p>প্রতি জন: ৳ 7000</p>
-</div>
-<div class="qty">
-<button onclick="changeQty('photo',-1)">-</button>
-<input id="photoQty" value="1" readonly>
-<button onclick="changeQty('photo',1)">+</button>
-</div>
-</div>
-</div>
+    <!-- ABOUT -->
+    <section>
+      <div class="grid">
+        <div class="card">
+          <h3 class="section-title">আইকনিক ইভেন্ট ম্যানেজমেন্ট</h3>
+          <p class="muted">
+            আমরা পরিকল্পনা থেকে এক্সিকিউশন পর্যন্ত পুরো ইভেন্টের দায়িত্ব নেই—ডেকোর, স্টেজ, কুঞ্জ, এন্ট্রি গেট, ফটো জোন, VIP টেবিল ডিজাইন, সাউন্ড & লাইট।
+            আপনার লোকেশন, দিন/সময় এবং সার্ভিস অনুযায়ী কোটেশন অটো তৈরি হবে।
+          </p>
+          <div style="margin-top:10px" class="hintBox">
+            <b>অফিস:</b> ঝলমল সিনেমা হল মোড়ে, গৌরীপুর, ময়মনসিংহ<br/>
+            <b>WhatsApp:</b> +8801776044951<br/>
+            <b>bKash/Nagad/Rocket:</b> 01776044951
+          </div>
+        </div>
 
-<!-- Cinematographer -->
-<div class="card">
-<div class="row">
-<div>
-<h3>Cinematographer</h3>
-<p>প্রতি জন: ৳ 7000</p>
-</div>
-<div class="qty">
-<button onclick="changeQty('cine',-1)">-</button>
-<input id="cineQty" value="0" readonly>
-<button onclick="changeQty('cine',1)">+</button>
-</div>
-</div>
-</div>
+        <div class="card">
+          <h3 class="section-title">আমাদের কাজ (Preview)</h3>
+          <img src="https://i.postimg.cc/2yP6JT7Y/FB-IMG-1771860843628.jpg"
+               alt="Iconic Event work"
+               style="width:100%;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:#000;object-fit:cover;aspect-ratio:16/10;">
+          <p class="mini">* আরও ছবি নিচের “আমাদের কাজ” সেকশনে আছে।</p>
+        </div>
+      </div>
+    </section>
 
-<!-- Discount -->
-<div class="card">
-<h3>Basic Discount (%)</h3>
-<input type="number" id="discount" value="0" onchange="calculateTotal()">
-</div>
+    <!-- SERVICES / PACKAGES -->
+    <section id="services">
+      <div class="card">
+        <h3 class="section-title">প্যাকেজ (বাংলাদেশ মার্কেট)</h3>
+        <p class="muted">* বিয়ের স্টেজ/কুঞ্জ/রিসিপশন/হলুদ—সবই কাস্টমাইজ করা যায়। বাজেট ৫,০০০ টাকা থেকে শুরু (ছোট সেটআপ)।</p>
 
-<!-- Summary -->
-<div class="summary">
-<p>Subtotal: ৳ <span id="subtotal">0</span></p>
-<p>Discount: ৳ <span id="discountAmount">0</span></p>
-<p class="total">Total: ৳ <span id="total">0</span></p>
-</div>
+        <div class="packages" style="margin-top:12px">
+          <div class="pkg">
+            <div class="tag">🟢 Basic</div>
+            <h3>Mini Setup (৳5,000 থেকে)</h3>
+            <p>• ছোট ব্যাকড্রপ / মিনিমাল ডেকোর</p>
+            <p>• ১–২ লাইট (প্রয়োজন অনুযায়ী)</p>
+            <p>• ছোট ইভেন্ট/বাসা/কমিউনিটি সেন্টার</p>
+            <div class="price">৳ 5,000+</div>
+          </div>
 
-<button class="order" onclick="sendWhatsApp()">Order Now</button>
+          <div class="pkg">
+            <div class="tag">🟡 Standard</div>
+            <h3>Wedding / Holud Standard</h3>
+            <p>• স্টেজ + লাইটিং</p>
+            <p>• এন্ট্রি গেট / ফটো জোন (ঐচ্ছিক)</p>
+            <p>• VIP টেবিল ডিজাইন</p>
+            <div class="price">কাস্টম কোট</div>
+          </div>
 
-</div>
+          <div class="pkg">
+            <div class="tag">🔴 Premium</div>
+            <h3>Grand Reception / Theme</h3>
+            <p>• গ্র্যান্ড স্টেজ / থিম ডেকোর</p>
+            <p>• ফুল/LED/প্রিমিয়াম লাইটিং</p>
+            <p>• ফুল ম্যানেজমেন্ট সাপোর্ট</p>
+            <div class="price">কাস্টম কোট</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<script>
-let photoPrice = 7000;
-let cinePrice = 7000;
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+      <div class="card">
+        <h3 class="section-title">আমাদের কাজ</h3>
+        <p class="muted">* কিছু রিসেন্ট স্টেজ/ডেকোর/ইভেন্ট সেটআপ।</p>
 
-function changeQty(type, value){
-  let input = document.getElementById(type+"Qty");
-  let qty = parseInt(input.value) + value;
-  if(qty < 0) qty = 0;
-  input.value = qty;
-  calculateTotal();
-}
+        <div class="gallery">
+          <img src="https://i.postimg.cc/tJLTfDNg/1771860106406.jpg" alt="work 1">
+          <img src="https://i.postimg.cc/MHhT4tmK/1771860138864.jpg" alt="work 2">
+          <img src="https://i.postimg.cc/XqTJhxkV/1771860361739.jpg" alt="work 3">
+          <img src="https://i.postimg.cc/2yP6JT7Y/FB-IMG-1771860843628.jpg" alt="work 4">
+        </div>
+      </div>
+    </section>
 
-function calculateTotal(){
-  let photoQty = parseInt(document.getElementById("photoQty").value);
-  let cineQty = parseInt(document.getElementById("cineQty").value);
-  let discountPercent = parseFloat(document.getElementById("discount").value);
+    <!-- TEAM -->
+    <section id="team">
+      <div class="card">
+        <h3 class="section-title">Our Team</h3>
+        <div class="team" style="margin-top:12px">
 
-  let subtotal = (photoQty * photoPrice) + (cineQty * cinePrice);
-  let discountAmount = subtotal * (discountPercent / 100);
-  let total = subtotal - discountAmount;
+          <div class="member">
+            <img src="https://i.postimg.cc/YSj5GkH9/FB-IMG-1772310792354.jpg" alt="রাব্বি">
+            <div>
+              <h4>রাব্বি</h4>
+              <p>ম্যানেজমেন্ট ডিরেক্টর</p>
+              <p>📞 <a href="tel:01915872079">01915872079</a></p>
+            </div>
+          </div>
 
-  document.getElementById("subtotal").innerText = subtotal;
-  document.getElementById("discountAmount").innerText = discountAmount.toFixed(0);
-  document.getElementById("total").innerText = total.toFixed(0);
-}
+          <div class="member">
+            <img src="https://i.postimg.cc/cHw5wLkc/Apurba-Roy-CEO-Core-Photographer.jpg" alt="অপূর্ব">
+            <div>
+              <h4>অপূর্ব</h4>
+              <p>ফাউন্ডার ও বুকিং ডিরেক্টর</p>
+              <p>📞 <a href="tel:01776044951">01776044951</a></p>
+            </div>
+          </div>
 
-function sendWhatsApp(){
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let address = document.getElementById("address").value;
-  let photoQty = document.getElementById("photoQty").value;
-  let cineQty = document.getElementById("cineQty").value;
-  let total = document.getElementById("total").innerText;
+          <div class="member">
+            <img src="https://i.postimg.cc/brYHry73/FB-IMG-1772311135939.jpg" alt="হাসান">
+            <div>
+              <h4>হাসান</h4>
+              <p>ফাউন্ডার ও ব্রাঞ্চ ম্যানেজার</p>
+              <p>📞 <a href="tel:01717062039">01717062039</a></p>
+            </div>
+          </div>
 
-  let message =
-`📸 Photography Booking
-Name: ${name}
-Phone: ${phone}
-Address: ${address}
+        </div>
+        <p class="mini" style="margin-top:10px">* প্রয়োজনে WhatsApp এ মেসেজ করুন: <b>+8801776044951</b></p>
+      </div>
+    </section>
 
-Photographer: ${photoQty}
-Cinematographer: ${cineQty}
+    <!-- BOOKING -->
+    <section id="booking">
+      <div class="card">
+        <h3 class="section-title">বুকিং ফর্ম (Instant Quotation)</h3>
+        <p class="muted">* এটি আনুমানিক কোট। লোকেশন, ভেন্যু, ডেলিভারি/টাইমলাইন অনুযায়ী ফাইনাল কোট পরিবর্তন হতে পারে।</p>
 
-Total: ৳ ${total}`;
+        <div style="margin-top:12px" class="grid">
+          <!-- Left: Form -->
+          <div class="cardBox" style="margin:0">
+            <div class="field">
+              <label for="clientName">আপনার নাম</label>
+              <input id="clientName" type="text" placeholder="যেমন: আপনার নাম লিখুন">
+            </div>
+            <div class="field">
+              <label for="clientPhone">মোবাইল নম্বর</label>
+              <input id="clientPhone" type="tel" inputmode="numeric" placeholder="যেমন: 01XXXXXXXXX">
+            </div>
+            <div class="field">
+              <label for="location">লোকেশন</label>
+              <input id="location" type="text" placeholder="যেমন: Gauripur, Mymensingh">
+            </div>
 
-  let whatsappNumber = "8801XXXXXXXXX"; // ← এখানে তোমার নাম্বার
-  let url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
-}
+            <!-- Category -->
+            <div class="field">
+              <label for="eventCategory">অনুষ্ঠানের ধরন</label>
+              <select id="eventCategory">
+                <option value="hindu">হিন্দু</option>
+                <option value="muslim" selected>মুসলিম</option>
+                <option value="christian">খ্রিস্টান</option>
+                <option value="other">অন্যান্য</option>
+              </select>
+              <div class="mini">* ক্যাটাগরি অনুযায়ী ইভেন্ট লিস্ট অটো পরিবর্তন হবে।</div>
+            </div>
 
-calculateTotal();
-</script>
+            <!-- Booking type -->
+            <div class="field">
+              <label>ইভেন্ট বুকিং টাইপ</label>
+              <div class="pillRow">
+                <label class="pillRadio">
+                  <input type="radio" name="bookingType" value="single" checked>
+                  <span>একটি ইভেন্ট</span>
+                </label>
+                <label class="pillRadio">
+                  <input type="radio" name="bookingType" value="multi">
+                  <span>একাধিক ইভেন্ট</span>
+                </label>
+              </div>
+              <div class="mini">* একাধিক ইভেন্ট হলে প্রতিটি ইভেন্টের তারিখ/সময় আলাদা করে সেট করুন।</div>
+            </div>
 
+            <!-- SINGLE EVENT -->
+            <div id="singleEventBox" class="cardBox">
+              <div class="field">
+                <label for="singleEventName">ইভেন্ট</label>
+                <select id="singleEventName"></select>
+              </div>
+
+              <div class="grid2">
+                <div class="field">
+                  <label for="singleStartDate">তারিখ (Start)</label>
+                  <input id="singleStartDate" type="date">
+                </div>
+                <div class="field">
+                  <label for="singleEndDate">তারিখ (End)</label>
+                  <input id="singleEndDate" type="date">
+                </div>
+              </div>
+
+              <div class="grid2">
+                <div class="field">
+                  <label for="singleStartTime">শুরু সময়</label>
+                  <input id="singleStartTime" type="time" value="11:00">
+                </div>
+                <div class="field">
+                  <label for="singleEndTime">শেষ সময়</label>
+                  <input id="singleEndTime" type="time" value="17:00">
+                </div>
+              </div>
+            </div>
+
+            <!-- MULTI EVENT -->
+            <div id="multiEventBox" class="cardBox" style="display:none">
+              <div class="field" style="margin-bottom:10px">
+                <label>ইভেন্ট লিস্ট</label>
+                <div class="mini">* “+ Add Event” দিয়ে একাধিক ইভেন্ট যোগ করুন।</div>
+              </div>
+
+              <div id="eventRows"></div>
+
+              <button type="button" class="btn btnGhost" id="addEventRow">➕ Add Event</button>
+            </div>
+
+            <!-- Services -->
+            <div class="field" style="margin-top:12px">
+              <label>যে সার্ভিসগুলো লাগবে</label>
+              <div class="pillRow" style="gap:8px">
+                <label class="pillRadio"><input type="checkbox" class="svc" value="stage"> <span>বিয়ের স্টেজ</span></label>
+                <label class="pillRadio"><input type="checkbox" class="svc" value="kunjo"> <span>হিন্দু কুঞ্জ</span></label>
+                <label class="pillRadio"><input type="checkbox" class="svc" value="photozone"> <span>ফটো জোন</span></label>
+                <label class="pillRadio"><input type="checkbox" class="svc" value="gate"> <span>এন্ট্রি ছোট গেট</span></label>
+                <label class="pillRadio"><input type="checkbox" class="svc" value="viptable"> <span>VIP টেবিল ডিজাইন</span></label>
+                <label class="pillRadio"><input type="checkbox" class="svc" value="holuddecor"> <span>গায়ে হলুদ ডেকোর</span></label>
+                <label class="pillRadio"><input type="checkbox" class="svc" value="receptiondecor"> <span>রিসিপশন ডেকোর</span></label>
+                <label class="pillRadio"><input type="checkbox" class="svc" value="sound"> <span>সাউন্ড</span></label>
+                <label class="pillRadio"><input type="checkbox" class="svc" value="light"> <span>লাইটিং</span></label>
+              </div>
+              <div class="mini">* “কুঞ্জ” শুধু হিন্দু ক্যাটাগরিতে অ্যাক্টিভ থাকবে।</div>
+            </div>
+
+            <div class="field">
+              <label for="discount">Discount (%) (সর্বোচ্চ 50%)</label>
+              <input id="discount" type="number" min="0" max="50" step="1" value="0">
+            </div>
+
+            <div class="field">
+              <label for="paymentMethod">Advance Payment Method</label>
+              <select id="paymentMethod">
+                <option value="">Select Method</option>
+                <option value="bKash">bKash</option>
+                <option value="Nagad">Nagad</option>
+                <option value="Rocket">Rocket</option>
+                <option value="Cash">Cash</option>
+              </select>
+              <div class="mini"><b>bKash/Nagad/Rocket:</b> 01776044951</div>
+            </div>
+
+            <div class="field">
+              <label for="trxId">Advance Transaction ID (অ্যাডভান্স দিলে TRX ID)</label>
+              <input id="trxId" type="text" placeholder="যেমন: 8A7B6C / TRX ID লিখুন">
+            </div>
+
+            <div class="field">
+              <label for="note">Note (অতিরিক্ত তথ্য)</label>
+              <textarea id="note" placeholder="যেমন: ভেন্যু, থিম কালার, বিশেষ রিকোয়েস্ট ইত্যাদি"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="contactDetails">যোগাযোগের বিস্তারিত (ঐচ্ছিক)</label>
+              <textarea id="contactDetails" placeholder="যেমন: ভেন্যু লোকেশন/সময়, বিকল্প ফোন, গেস্ট সংখ্যা ইত্যাদি"></textarea>
+            </div>
+          </div>
+
+          <!-- Right: Calculator + Actions -->
+          <div class="cardBox" style="margin:0">
+            <div class="cost" id="costBox">
+              <div class="costRow">
+                <span>ইভেন্ট কাউন্ট</span>
+                <b id="evCount">0</b>
+              </div>
+              <div class="costRow">
+                <span>দিন (তারিখ কাউন্ট)</span>
+                <b id="dayCount">0</b>
+              </div>
+              <div class="costRow">
+                <span>ঘন্টা (সময় কাউন্ট/মোট)</span>
+                <b id="hourCount">0</b>
+              </div>
+              <div class="costRow">
+                <span>Service Cost</span>
+                <b id="teamCost">৳ 0</b>
+              </div>
+              <div class="costRow">
+                <span>Discount</span>
+                <b id="discountAmt">৳ 0</b>
+              </div>
+              <div class="costRow totalRow">
+                <span>Total</span>
+                <b id="totalAmt">৳ 0</b>
+              </div>
+              <div class="costRow">
+                <span>Advance (40%)</span>
+                <b id="advanceAmt">৳ 0</b>
+              </div>
+              <div class="costRow">
+                <span>Due</span>
+                <b id="dueAmt">৳ 0</b>
+              </div>
+            </div>
+
+            <div class="warnBox">
+              ✅ Advance 40% বাধ্যতামূলক। Discount সর্বোচ্চ 50% পর্যন্ত।
+            </div>
+
+            <div style="margin-top:12px">
+              <button class="btn" style="width:100%" id="sendWhatsApp" type="button">💬 WhatsApp এ পাঠান</button>
+              <button class="btn btnGhost" style="width:100%;margin-top:10px" id="sendTelegram" type="button">✈️ Telegram এ পাঠান</button>
+
+              <div class="actions" style="margin-top:10px">
+                <button class="btn btnGhost" style="width:100%" id="copyQuotation" type="button">📋 Copy Full Quotation</button>
+                <a class="btn btnGhost" style="width:100%;margin-top:10px" href="https://m.me/RamyaChobi" target="_blank" rel="noopener">
+                  💬 Open Messenger
+                </a>
+              </div>
+
+              <div class="mini" style="margin-top:10px">
+                * Messenger এ নিরাপত্তাজনিত কারণে অটো-টেক্সট সবসময় যায় না—তাই Copy করে Paste করুন।
+              </div>
+            </div>
+
+            <div class="hintBox" style="margin-top:14px">
+              <b>সার্ভিস রেট (Base):</b><br/>
+              • স্টেজ: ৳8,000<br/>
+              • কুঞ্জ: ৳12,000 (শুধু হিন্দু)<br/>
+              • ফটো জোন: ৳5,000<br/>
+              • এন্ট্রি গেট: ৳5,000<br/>
+              • VIP টেবিল: ৳3,000<br/>
+              • হলুদ ডেকোর: ৳8,000<br/>
+              • রিসিপশন ডেকোর: ৳10,000<br/>
+              • সাউন্ড: ৳5,000<br/>
+              • লাইটিং: ৳5,000<br/>
+              <div style="margin-top:8px"><b>bKash/Nagad/Rocket:</b> 01776044951</div>
+            </div>
+
+            <div class="cardBox" style="margin-top:12px">
+              <button class="seeBtn" type="button" data-toggle="bdRules">বাংলাদেশে সাধারণ নিয়ম (সংক্ষেপ)</button>
+              <div id="bdRules" style="display:none;margin-top:10px" class="mini">
+                • লোকেশন/ভেন্যু/টাইমলাইন অনুযায়ী কোট পরিবর্তন হতে পারে।<br/>
+                • একাধিক দিন হলে সার্ভিস কস্ট দিন অনুযায়ী গুণ হবে।<br/>
+                • কাস্টম থিম/প্রিমিয়াম ফুল/LED চাইলে আলাদা যোগ হবে।<br/>
+                • বুকিং কনফার্ম করতে অ্যাডভান্স 40% প্রয়োজন।
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section>
+      <div class="footer">
+        <div class="socialRow">
+          <a class="chip" href="https://www.facebook.com/share/1FYCGYFWyu/" target="_blank" rel="noopener">Facebook</a>
+          <a class="chip" href="https://www.instagram.com/romochobi?igsh=bjZiZmRwYmpiNDNu" target="_blank" rel="noopener">Instagram</a>
+          <a class="chip" href="https://youtube.com/@ramyachobi?si=faxiYYW0cPfwiwyk" target="_blank" rel="noopener">YouTube</a>
+        </div>
+
+        <div class="footBottom">
+          <div class="footLogo">
+            <img src="https://i.postimg.cc/hPTPvL06/file-000000006d847209b4e18ad8d8ef4a25-(1).png" alt="Iconic Event Logo">
+            <div class="txt">
+              <b>আইকনিক ইভেন্ট</b>
+              <small>অফিস: ঝলমল সিনেমা হল মোড়ে, গৌরীপুর, ময়মনসিংহ</small>
+            </div>
+          </div>
+          <div class="copy">© 2026 • All rights reserved</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a class="whatsappFloat" href="https://wa.me/8801776044951" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+  <!-- Bottom CTA -->
+  <div class="bottomCTA">
+    <div class="wrap">
+      <a class="primary" href="#booking">📅 কোটেশন</a>
+      <a href="https://wa.me/8801776044951" target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>
+  </div>
+
+  <script>
+    // ---------- HERO SLIDER ----------
+    const heroSlides = document.querySelectorAll('.hero img');
+    let heroIdx = 0;
+    setInterval(() => {
+      heroSlides.forEach(i => i.classList.remove('active'));
+      heroSlides[heroIdx].classList.add('active');
+      heroIdx = (heroIdx + 1) % heroSlides.length;
+    }, 4000);
+
+    // ---------- Toggle blocks ----------
+    document.querySelectorAll('[data-toggle]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-toggle');
+        const el = document.getElementById(id);
+        if(!el) return;
+        const isOpen = el.style.display !== 'none';
+        el.style.display = isOpen ? 'none' : 'block';
+      });
+    });
+
+    // ---------- Event booking type toggle ----------
+    const bookingTypeRadios = document.querySelectorAll('input[name="bookingType"]');
+    const singleEventBox = document.getElementById('singleEventBox');
+    const multiEventBox  = document.getElementById('multiEventBox');
+    const eventRows      = document.getElementById('eventRows');
+    const addEventRowBtn = document.getElementById('addEventRow');
+
+    bookingTypeRadios.forEach(r => {
+      r.addEventListener('change', () => {
+        const type = document.querySelector('input[name="bookingType"]:checked').value;
+        if(type === 'single'){
+          singleEventBox.style.display = '';
+          multiEventBox.style.display = 'none';
+        }else{
+          singleEventBox.style.display = 'none';
+          multiEventBox.style.display = '';
+          if(eventRows.children.length === 0) addEventRow();
+        }
+        recalcAll();
+      });
+    });
+
+    // ---------- Helpers ----------
+    function parseDateSafe(v){
+      if(!v) return null;
+      const d = new Date(v + "T00:00:00");
+      return isNaN(d.getTime()) ? null : d;
+    }
+    function daysInclusive(startDate, endDate){
+      const s = parseDateSafe(startDate);
+      const e = parseDateSafe(endDate);
+      if(!s || !e) return 0;
+      const diff = Math.round((e - s) / (1000*60*60*24));
+      return diff >= 0 ? (diff + 1) : 0;
+    }
+    function hoursBetween(startTime, endTime){
+      if(!startTime || !endTime) return 0;
+      const [sh, sm] = startTime.split(':').map(Number);
+      const [eh, em] = endTime.split(':').map(Number);
+      if([sh,sm,eh,em].some(n => Number.isNaN(n))) return 0;
+      let startMin = sh*60 + sm;
+      let endMin   = eh*60 + em;
+      if(endMin < startMin) endMin += 24*60; // overnight
+      const mins = endMin - startMin;
+      return Math.max(0, Math.round(mins/60));
+    }
+    function n(v, def=0){
+      const x = Number(v);
+      return Number.isFinite(x) ? x : def;
+    }
+    function money(x){
+      const v = Math.round(n(x,0));
+      return "৳ " + v.toLocaleString('en-US');
+    }
+    function clean(s){ return (s || "").toString().trim(); }
+
+    // ---------- Category wise event options ----------
+    const CATEGORY_EVENTS = {
+      hindu: ["হিন্দু বিয়ে", "হিন্দু বিয়ের কুঞ্জ", "রিসিপশন", "গায়ে হলুদ", "এনগেজমেন্ট", "বিবাহ বার্ষিকী", "জন্মদিন"],
+      muslim: ["মুসলিম বিয়ে", "রিসিপশন", "গায়ে হলুদ", "এনগেজমেন্ট", "বিবাহ বার্ষিকী", "জন্মদিন"],
+      christian: ["খ্রিস্টান বিয়ে", "রিসিপশন", "এনগেজমেন্ট", "জন্মদিন", "অন্যান্য"],
+      other: ["কর্পোরেট ইভেন্ট", "মেহেদী / হলুদ নাইট", "বেবি শাওয়ার", "রাইস সেরেমনি", "জন্মদিন", "অন্যান্য"]
+    };
+
+    const eventCategoryEl = document.getElementById('eventCategory');
+    const singleEventSelect = document.getElementById('singleEventName');
+
+    function fillSelectWithOptions(selectEl, options){
+      selectEl.innerHTML = `<option value="">Select Event</option>` + options.map(v => `<option>${v}</option>`).join('');
+    }
+
+    function updateEventOptions(){
+      const cat = eventCategoryEl.value;
+      fillSelectWithOptions(singleEventSelect, CATEGORY_EVENTS[cat] || CATEGORY_EVENTS.other);
+
+      // Multi-event rows update
+      [...eventRows.querySelectorAll('.rowCard .evName')].forEach(sel=>{
+        const current = sel.value;
+        fillSelectWithOptions(sel, CATEGORY_EVENTS[cat] || CATEGORY_EVENTS.other);
+        if(current) sel.value = current;
+      });
+
+      // Kunjo service only for hindu
+      const kunjoCheckbox = document.querySelector('.svc[value="kunjo"]');
+      if(kunjoCheckbox){
+        const wrap = kunjoCheckbox.closest('label');
+        if(eventCategoryEl.value !== 'hindu'){
+          kunjoCheckbox.checked = false;
+          kunjoCheckbox.disabled = true;
+          if(wrap) wrap.style.opacity = '0.45';
+        }else{
+          kunjoCheckbox.disabled = false;
+          if(wrap) wrap.style.opacity = '';
+        }
+      }
+
+      recalcAll();
+    }
+    eventCategoryEl.addEventListener('change', updateEventOptions);
+
+    // ---------- Multi Event Row ----------
+    function addEventRow(){
+      const row = document.createElement('div');
+      row.className = 'rowCard';
+      row.innerHTML = `
+        <div class="rowTop">
+          <strong>Event</strong>
+          <button type="button" class="iconBtn" data-remove="1">✖</button>
+        </div>
+
+        <div class="field" style="margin-top:8px">
+          <select class="evName"></select>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label>তারিখ (Start)</label>
+            <input type="date" class="evStartDate">
+          </div>
+          <div class="field">
+            <label>তারিখ (End)</label>
+            <input type="date" class="evEndDate">
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label>শুরু সময়</label>
+            <input type="time" class="evStartTime" value="11:00">
+          </div>
+          <div class="field">
+            <label>শেষ সময়</label>
+            <input type="time" class="evEndTime" value="17:00">
+          </div>
+        </div>
+      `;
+
+      row.addEventListener('input', recalcAll);
+      row.querySelector('[data-remove="1"]').addEventListener('click', () => {
+        row.remove();
+        recalcAll();
+      });
+
+      eventRows.appendChild(row);
+      updateEventOptions();
+      recalcAll();
+    }
+    addEventRowBtn.addEventListener('click', addEventRow);
+
+    // ---------- Event summary ----------
+    function getEventSummary(){
+      const type = document.querySelector('input[name="bookingType"]:checked')?.value || 'single';
+      let items = [];
+
+      if(type === 'single'){
+        const name = clean(document.getElementById('singleEventName').value);
+        const sd = document.getElementById('singleStartDate').value;
+        const ed = document.getElementById('singleEndDate').value;
+        const st = document.getElementById('singleStartTime').value;
+        const et = document.getElementById('singleEndTime').value;
+        if(name) items.push({ name, sd, ed, st, et });
+      } else {
+        [...eventRows.querySelectorAll('.rowCard')].forEach(row => {
+          const name = clean(row.querySelector('.evName')?.value);
+          const sd = row.querySelector('.evStartDate')?.value || '';
+          const ed = row.querySelector('.evEndDate')?.value || '';
+          const st = row.querySelector('.evStartTime')?.value || '';
+          const et = row.querySelector('.evEndTime')?.value || '';
+          if(name) items.push({ name, sd, ed, st, et });
+        });
+      }
+
+      const eventCount = items.length;
+      const dayCount   = items.reduce((sum, it) => sum + daysInclusive(it.sd, it.ed), 0);
+      const hourCount  = items.reduce((sum, it) => sum + hoursBetween(it.st, it.et), 0);
+
+      return { type, items, eventCount, dayCount, hourCount };
+    }
+
+    // ---------- Service rates (Base) ----------
+    const RATE = {
+      stage: 8000,
+      kunjo: 12000,
+      photozone: 5000,
+      gate: 5000,
+      viptable: 3000,
+      holuddecor: 8000,
+      receptiondecor: 10000,
+      sound: 5000,
+      light: 5000
+    };
+
+    function getSelectedServices(){
+      return [...document.querySelectorAll('.svc:checked')].map(x => x.value);
+    }
+
+    // ---------- Totals ----------
+    function recalcAll(){
+      const ev = getEventSummary();
+      const days = Math.max(0, ev.dayCount || 0);
+
+      const selected = getSelectedServices();
+      const serviceBase = selected.reduce((sum, key) => sum + (RATE[key] || 0), 0);
+      const multiplier = Math.max(1, days || 1); // multi-day => multiply
+      const serviceCost = serviceBase * multiplier;
+
+      let subtotal = serviceCost;
+
+      let discountPct = n(document.getElementById('discount').value,0);
+      if(discountPct < 0) discountPct = 0;
+      if(discountPct > 50) discountPct = 50;
+      document.getElementById('discount').value = discountPct;
+
+      const discountAmt = Math.round(subtotal * (discountPct/100));
+      const total = Math.max(0, subtotal - discountAmt);
+
+      const advance = Math.round(total * 0.40);
+      const due = Math.max(0, total - advance);
+
+      // UI
+      document.getElementById('evCount').textContent = String(ev.eventCount);
+      document.getElementById('dayCount').textContent = String(days);
+      document.getElementById('hourCount').textContent = String(ev.hourCount);
+
+      document.getElementById('teamCost').textContent = money(serviceCost);
+      document.getElementById('discountAmt').textContent = money(discountAmt);
+      document.getElementById('totalAmt').textContent = money(total);
+      document.getElementById('advanceAmt').textContent = money(advance);
+      document.getElementById('dueAmt').textContent = money(due);
+    }
+
+    // Bind inputs
+    const inputsToWatch = [
+      'clientName','clientPhone','location',
+      'singleEventName','singleStartDate','singleEndDate','singleStartTime','singleEndTime',
+      'discount','paymentMethod','trxId','note','contactDetails','eventCategory'
+    ];
+    inputsToWatch.forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.addEventListener('input', recalcAll);
+      if(el) el.addEventListener('change', recalcAll);
+    });
+
+    // Services change
+    document.querySelectorAll('.svc').forEach(ch => ch.addEventListener('change', recalcAll));
+
+    // ---------- Build message ----------
+    function buildMessage(){
+      const name = clean(document.getElementById('clientName').value);
+      const phone = clean(document.getElementById('clientPhone').value);
+      const location = clean(document.getElementById('location').value);
+
+      const paymentMethod = clean(document.getElementById('paymentMethod').value);
+      const trxId = clean(document.getElementById('trxId').value);
+
+      const note = clean(document.getElementById('note').value);
+      const contactDetails = clean(document.getElementById('contactDetails').value);
+
+      const categoryLabel = {
+        hindu: "হিন্দু",
+        muslim: "মুসলিম",
+        christian: "খ্রিস্টান",
+        other: "অন্যান্য"
+      }[eventCategoryEl.value] || "অন্যান্য";
+
+      const svcNames = {
+        stage:"বিয়ের স্টেজ",
+        kunjo:"হিন্দু কুঞ্জ",
+        photozone:"ফটো জোন",
+        gate:"এন্ট্রি ছোট গেট",
+        viptable:"VIP টেবিল ডিজাইন",
+        holuddecor:"গায়ে হলুদ ডেকোর",
+        receptiondecor:"রিসিপশন ডেকোর",
+        sound:"সাউন্ড",
+        light:"লাইটিং"
+      };
+
+      const ev = getEventSummary();
+      const days = Math.max(0, ev.dayCount || 0);
+
+      const selected = getSelectedServices();
+      const serviceBase = selected.reduce((sum, key) => sum + (RATE[key] || 0), 0);
+      const multiplier = Math.max(1, days || 1);
+      const serviceCost = serviceBase * multiplier;
+
+      const discountPct = Math.min(50, Math.max(0, n(document.getElementById('discount').value,0)));
+      const discountAmt = Math.round(serviceCost * (discountPct/100));
+      const total = Math.max(0, serviceCost - discountAmt);
+      const advance = Math.round(total * 0.40);
+      const due = Math.max(0, total - advance);
+
+      const lines = [];
+      lines.push("আইকনিক ইভেন্ট (Quotation Request)");
+      lines.push("--------------------------------------------------");
+      lines.push("Category: " + categoryLabel);
+      if(name) lines.push("Name: " + name);
+      if(phone) lines.push("Phone: " + phone);
+      if(location) lines.push("Location: " + location);
+
+      if(ev.items.length){
+        lines.push("");
+        lines.push("Event Count: " + ev.eventCount);
+        lines.push("Day Count: " + days);
+        lines.push("Hour Count: " + ev.hourCount);
+        lines.push("Event Details:");
+        ev.items.forEach((it, i) => {
+          lines.push(`  ${i+1}. ${it.name} | ${it.sd || '-'} to ${it.ed || '-'} | ${it.st || '-'} - ${it.et || '-'}`);
+        });
+      }
+
+      if(selected.length){
+        lines.push("");
+        lines.push("Services:");
+        selected.forEach((k,i)=> lines.push(`  ${i+1}. ${svcNames[k] || k}`));
+      } else {
+        lines.push("");
+        lines.push("Services: (Not selected)");
+      }
+
+      lines.push("");
+      lines.push(`Service Cost: ${money(serviceCost)} (Base x Days)`);
+      lines.push(`Discount: ${discountPct}% (${money(discountAmt)})`);
+      lines.push(`Total: ${money(total)}`);
+      lines.push(`Advance (40%): ${money(advance)} (Mandatory)`);
+      lines.push(`Due: ${money(due)}`);
+
+      lines.push("");
+      lines.push(`Payment: ${paymentMethod || "-"}`);
+      if(trxId) lines.push(`TRX ID: ${trxId}`);
+      lines.push("bKash/Nagad/Rocket: 01776044951");
+
+      if(contactDetails) lines.push("Details: " + contactDetails);
+      if(note) lines.push("Note: " + note);
+
+      lines.push("");
+      lines.push("Office: ঝলমল সিনেমা হল মোড়ে, গৌরীপুর, ময়মনসিংহ");
+      lines.push("WhatsApp: +8801776044951");
+      lines.push("--------------------------------------------------");
+
+      return lines.join("\n");
+    }
+
+    // ---------- WhatsApp / Telegram ----------
+    document.getElementById('sendWhatsApp').addEventListener('click', () => {
+      const text = buildMessage();
+      const url = "https://wa.me/8801776044951?text=" + encodeURIComponent(text);
+      window.open(url, "_blank", "noopener");
+    });
+
+    document.getElementById('sendTelegram').addEventListener('click', () => {
+      const text = buildMessage();
+      const share = "https://t.me/share/url?url=&text=" + encodeURIComponent(text);
+      window.open(share, "_blank", "noopener");
+    });
+
+    // ---------- Copy Full Quotation ----------
+    document.getElementById('copyQuotation').addEventListener('click', async () => {
+      try{
+        const text = buildMessage();
+        await navigator.clipboard.writeText(text);
+        alert("✅ Full quotation copied! এখন Messenger এ গিয়ে Paste করুন।");
+      }catch(e){
+        alert("⚠️ Copy failed. Manual copy করুন।");
+      }
+    });
+
+    // init
+    updateEventOptions();
+    recalcAll();
+  </script>
 </body>
 </html>
